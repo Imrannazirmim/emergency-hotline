@@ -33,10 +33,10 @@ for (const callNum of callBtn) {
 for (const copied of copyBtn) {
   copied.addEventListener("click", function () {
     const copyArea = copied.parentElement.parentElement;
-    const callNumber = copyArea.querySelector('.call-area span').innerText;
-    
+    const callNumber = copyArea.querySelector(".call-area span").innerText;
+
     navigator.clipboard.writeText(callNumber).then(() => {
-       alert(`Number ${callNumber} Copied`)
+      alert(`Number ${callNumber} Copied`);
       copy = copy + 1;
       copyCount.innerText = copy;
     });
@@ -53,10 +53,9 @@ for (const heartIcon of hearBtn) {
 
 function getCurrentTime() {
   const d = new Date();
-  let hours = d.getHours().toString();
-  const minutes = d.getMinutes();
-  const second = d.getSeconds();
-  const amToPm = hours >= 12 ? "PM" : "AM";
+  let hours = d.getHours()
+  let minutes = d.getMinutes();
+  let seconds = d.getSeconds();
   if (hours >= 12) {
     hours = hours - 12;
   }
@@ -67,11 +66,11 @@ function getCurrentTime() {
   if (minutes < 10) {
     minutes = "0" + minutes;
   }
-  if (second < 10) {
-    second = "0" + second;
+  if (seconds < 10) {
+    seconds = "0" + seconds;
   }
 
-  return `${hours}:${minutes}:${second} ${amToPm}`;
+  return `${hours}:${minutes}:${seconds}`;
 }
 
 // history functionality added
@@ -89,8 +88,6 @@ function addHistory(cardTitle, callNumber) {
     `;
   historyArea.appendChild(historyDiv);
 }
-
-
 
 //clear all history
 clearBtn.addEventListener("click", function () {
