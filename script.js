@@ -6,6 +6,7 @@ const coinsCount = document.getElementById("coins-count");
 const copyCount = document.getElementById("copy-count");
 const clearBtn = document.getElementById("clear-btn");
 const copyBtn = document.querySelectorAll(".btn-area button:first-child");
+const hearBtn = document.querySelectorAll(".fa-heart");
 
 let coins = 100;
 let hearts = 0;
@@ -23,8 +24,6 @@ for (const callNum of callBtn) {
     alert(`${cardTitle} and Helpline Number ${callNumber}`);
     coins = coins - 20;
     coinsCount.innerText = coins;
-    hearts = hearts + 1;
-    heartCount.innerText = hearts;
 
     addHistory(cardTitle, callNumber);
   });
@@ -33,27 +32,23 @@ for (const callNum of callBtn) {
 //copy button
 for (const copied of copyBtn) {
   copied.addEventListener("click", function () {
+    const copyArea = copied.parentElement.parentElement;
+    const callNumber = copyArea.querySelector('.call-area span').innerText;
+    
     navigator.clipboard.writeText(callNumber).then(() => {
-      copy++
+       alert(`Number ${callNumber} Copied`)
+      copy = copy + 1;
       copyCount.innerText = copy;
     });
   });
 }
 
-// history functionality added
-function addHistory(cardTitle, callNumber) {
-  const historyDiv = document.createElement("div");
-  const historyArea = document.querySelector(".history-area");
-  historyDiv.classList.add("card-history");
-  historyDiv.innerHTML = `
-     <div>
-            <span>${cardTitle}</span>
-            <p>${callNumber}</p>
-        </div>
-        <span>${getCurrentTime()}</span>
-    
-    `;
-  historyArea.appendChild(historyDiv);
+//hear icon value increase
+for (const heartIcon of hearBtn) {
+  heartIcon.addEventListener("click", function () {
+    hearts = hearts + 1;
+    heartCount.innerText = hearts;
+  });
 }
 
 function getCurrentTime() {
@@ -79,6 +74,25 @@ function getCurrentTime() {
   return `${hours}:${minutes}:${second} ${amToPm}`;
 }
 
+// history functionality added
+function addHistory(cardTitle, callNumber) {
+  const historyDiv = document.createElement("div");
+  const historyArea = document.querySelector(".history-area");
+  historyDiv.classList.add("card-history");
+  historyDiv.innerHTML = `
+     <div>
+            <span>${cardTitle}</span>
+            <p>${callNumber}</p>
+        </div>
+        <span>${getCurrentTime()}</span>
+    
+    `;
+  historyArea.appendChild(historyDiv);
+}
+
+
+
+//clear all history
 clearBtn.addEventListener("click", function () {
   const historyItems = document.querySelectorAll(".card-history");
   for (const history of historyItems) {
