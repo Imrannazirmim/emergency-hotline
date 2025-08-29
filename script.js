@@ -5,6 +5,7 @@ const heartCount = document.getElementById("heart-count");
 const coinsCount = document.getElementById("coins-count");
 const copyCount = document.getElementById("copy-count");
 const clearBtn = document.getElementById("clear-btn");
+const copyBtn = document.querySelectorAll(".btn-area button:first-child");
 
 let coins = 100;
 let hearts = 0;
@@ -24,9 +25,18 @@ for (const callNum of callBtn) {
     coinsCount.innerText = coins;
     hearts = hearts + 1;
     heartCount.innerText = hearts;
-    copy = copy + 1;
-    copyCount.innerText = copy;
+
     addHistory(cardTitle, callNumber);
+  });
+}
+
+//copy button
+for (const copied of copyBtn) {
+  copied.addEventListener("click", function () {
+    navigator.clipboard.writeText(callNumber).then(() => {
+      copy++
+      copyCount.innerText = copy;
+    });
   });
 }
 
@@ -44,7 +54,6 @@ function addHistory(cardTitle, callNumber) {
     
     `;
   historyArea.appendChild(historyDiv);
- 
 }
 
 function getCurrentTime() {
@@ -70,10 +79,9 @@ function getCurrentTime() {
   return `${hours}:${minutes}:${second} ${amToPm}`;
 }
 
- clearBtn.addEventListener("click", function () {
-    const historyItems = document.querySelectorAll('.card-history');
-    for(const history of historyItems){
-        history.remove();
-    }
-    
-  });
+clearBtn.addEventListener("click", function () {
+  const historyItems = document.querySelectorAll(".card-history");
+  for (const history of historyItems) {
+    history.remove();
+  }
+});
