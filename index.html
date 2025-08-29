@@ -28,9 +28,9 @@
           </p>
         </div>
         <ul class="list">
-          <li>0 <img src="./assets/heart.png" alt="heart" /></li>
-          <li>100 <img src="./assets/coin.png" alt="coin" /></li>
-          <li><span>0</span>Copy</li>
+          <li><span id="heart-count">0</span> <img src="./assets/heart.png" alt="heart" /></li>
+          <li><span id="coins-count">100</span> <img src="./assets/coin.png" alt="coin" /></li>
+          <li><span id="copy-count">0</span>Copy</li>
         </ul>
       </nav>
       <section class="hero-section">
@@ -142,7 +142,7 @@
             <button id="call-btn"><i class="fa-solid fa-phone"></i>Call</button>
           </div>
         </div>
-                <div class="card">
+        <div class="card">
           <div class="card-title">
             <img src="./assets/emergency.png" alt="emergency" />
             <i class="fa-regular fa-heart"></i>
@@ -194,18 +194,17 @@
       <section class="history-area">
         <div class="history-title">
           <span>Call History</span>
-          <button>Clear</button>
+          <button id="clear-btn">Clear</button>
         </div>
-        <div class="card-history">
+        <!-- <div class="card-history">
           <div>
             <span>Fire Service Number</span>
             <p>999</p>
           </div>
           <span>11.34.58 AM</span>
-        </div>
+        </div>  -->
       </section>
     </main>
     <script src="script.js"></script>
   </body>
 </html>
- 
